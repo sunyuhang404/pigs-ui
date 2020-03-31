@@ -1,0 +1,121 @@
+
+.pg-checkbox-group {
+  display: inline-block;
+  width: 100%;
+  &:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.pg-checkbox-item {
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  font-size: 0;
+  .pg-checkbox-input {
+    display: none;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+  }
+  .pg-checkbox-item-input {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px #dcdfe6 solid;
+    border-radius: 2px;
+    position: relative;
+    margin-right: 6px;
+    vertical-align: top;
+  }
+  .pg-checkbox-item-label {
+    vertical-align: middle;
+    max-width: 85%;
+    word-break: break-word;
+    line-height: 1;
+    color: #232747;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.pg-checkbox-button {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  .pg-checkbox-button_label {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #E6E9F3;
+    color: #8186A4;
+    padding: 7px 22px;
+    cursor: pointer;
+  }
+  .pg-checkbox-button_child {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+.is-active {
+  .pg-checkbox-button_label {
+    background-color: #3F7AFF;
+    color: #fff;
+  }
+  .pg-checkbox-item-input {
+    border-width: 1px;
+    border-color: #3F7AFF;
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      margin-top: -5px;
+      margin-left: -5px;
+      border-radius: 2px;
+      background-color: #4551b1;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      margin-top: -5px;
+      margin-left: -5px;
+      border-radius: 2px;
+      background-color: #3F7AFF;
+    }
+  }
+}
+
+.is-disabled.pg-checkbox-item {
+  cursor: not-allowed;
+  .pg-checkbox-item-input {
+    border-color: #dcdfe6;
+    background-color: #f5f5f5;
+    &:after {
+      content: "";
+      background-color: rgba(0,0,0,0.2);
+    }
+  }
+}
+
+.is-disabled.pg-checkbox-button {
+  .pg-checkbox-button_label {
+    color: #bfcbd9;
+    background-color: #f5f5f5;
+  }
+}

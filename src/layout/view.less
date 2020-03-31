@@ -1,0 +1,65 @@
+
+#app-gad {
+  height: 100%;
+  .app-content {
+    height: 100%;
+  }
+}
+
+.pg-views {
+  position: relative;
+  height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  overflow: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  .pg-views-top-menu {
+    border-bottom: 1px solid #dcdfe6;
+    .pg-views-icon {
+      display: inline-block;
+      width: 60px;
+      height: 40px;
+      background-image: url('../assets/icon_pigs.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      vertical-align: middle;
+    }
+    p {
+      margin-left: 10px;
+      display: inline-block;
+      font-size: 20px;
+      vertical-align: middle;
+      font-weight: 600;
+      color: #20a0ff;
+      font-family: monospace;
+    }
+  }
+  .pg-content {
+    .pg-component-menu {
+      position: absolute;
+      left: 40px;
+      display: inline-block;
+      width: 200px;
+      .pg-component-menu__item {
+        color: #999;
+        line-height: 40px;
+        cursor: pointer;
+        &:hover {
+          color: #409eff;
+        }
+      }
+      .active {
+        color: #409eff;
+      }
+    }
+    .pg-views-router {
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 240px;
+    }
+  }
+}

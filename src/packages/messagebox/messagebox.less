@@ -1,0 +1,68 @@
+
+.pg-messagebox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.pg-messagebox-warpper {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.pg-messagebox-box {
+  position: absolute;
+  display: inline-block;
+  width: 420px;
+  left: 50%;
+  margin-left: -210px;
+  top: 10%;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  .pg-messagebox__title {
+    position: relative;
+    padding: 20px;
+    margin-bottom: 0;
+    font-size: 19px;
+    font-weight: 550;
+    height: 18px;
+    color: #232747;
+    .pg-messagebox__close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+  }
+  .pg-messagebox__message {
+    padding: 20px;
+    color: #232747;
+    font-size: 16px;
+  }
+  .pg-messagebox__content {
+    padding: 20px;
+    color: #232747;
+    font-size: 16px;
+    .pg-messagebox__content_title {
+      font-weight: 550 !important;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .pg-messagebox__content_info {
+      margin-bottom: 0;
+      margin-top: 10px;
+    }
+  }
+  .pg-messagebox__btns {
+    padding: 10px 20px 15px;
+    text-align: right;
+    .pg-button {
+      margin-left: 10px;
+    }
+  }
+}

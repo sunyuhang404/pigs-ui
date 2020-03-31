@@ -1,0 +1,39 @@
+
+.date-picker {
+  display: block;
+  padding-left: 8px;
+  height: 34px;
+  box-sizing: border-box;
+  background-color: #F3F4F8;
+  border: 1px #BBC0D3 solid;
+  border-radius: 2px;
+  position: relative;
+  font-size: 0;
+  input {
+    outline: 0;
+    -webkit-appearance: none;
+    width: 75%;
+    height: -webkit-fill-available;
+    border: none;
+    background-color: #F3F4F8;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  input[disabled] {
+    cursor: not-allowed;
+  }
+  .icon {
+    vertical-align: middle;
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    margin-top: -7px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url('../../img/icon_date.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}
