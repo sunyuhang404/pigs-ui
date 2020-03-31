@@ -40,25 +40,3 @@ ul {
   background: #ddd;
   border-radius: 4px;
 }
-
-@font-face {
-  font-family: pigs-icons;
-  src: url('./assets/font/d2f69a92faa6.woff') format('woff'), url('./assets/font/b02bdc1b846f.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal
-}
-
-[class*=" pg-icon-"],
-[class^=pg-icon-] {
-  font-family: pigs-icons !important;
-  speak: none;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  vertical-align: baseline;
-  display: inline-block;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale
-}
