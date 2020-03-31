@@ -1,0 +1,48 @@
+
+.pg-form {
+  
+}
+
+.pg-form-item {
+  position: relative;
+  margin-bottom: 22px;
+  .pg-form-item__label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 32px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+  }
+  .pg-form-item__content {
+    position: relative;
+    line-height: 32px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    .pg-form-item__error {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding-top: 4px;
+      color: #f56c6c;
+      font-size: 12px;
+      line-height: 1;
+    }
+  }
+}
+.is-required {
+  .pg-form-item__label {
+    &::before {
+      content: "*";
+      color: #f56c6c;
+      margin-right: 4px;
+    }
+  }
+}
+.inline {
+  .pg-form-item {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,102 @@
+
+.arrow-common() {
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  margin-right: 3px;
+  border-width: 6px;
+  &:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    margin-left: -6px;
+  }
+}
+
+.pg-popover {
+  position: relative;
+  .pg-popover__content {
+    background: #fff;
+    box-sizing: border-box;
+    min-width: 150px;
+    border-radius: 2px;
+    border: 1px solid #d1dbe5;
+    padding: 10px;
+    z-index: 2000;
+    font-size: 12px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+    text-align: left;
+    .pg-popover__title {
+      margin-bottom: 9px;
+    }
+  }
+  .pg-popover__content[x-placement="right"] {
+    margin-left: 10px;
+    .arrow {
+      .arrow-common();
+      border-left-width: 0;
+      border-right-color: #d1dbe5;
+      left: -7px;
+      &:after {
+        top: -6px;
+        left: 1px;
+        border-left-width: 0;
+        border-right-color: #fff;
+        border-width: 6px;
+      }
+    }
+  }
+  .pg-popover__content[x-placement="left"] {
+    margin-right: 10px;
+    .arrow {
+      .arrow-common();
+      border-right-width: 0;
+      border-left-color: #d1dbe5;
+      right: -10px;
+      &:after {
+        top: -6px;
+        right: -5px;
+        border-right-width: 0;
+        border-left-color: #fff;
+        border-width: 6px;
+      }
+    }
+  }
+  .pg-popover__content[x-placement="bottom"] {
+    margin-top: 10px;
+    .arrow {
+      .arrow-common();
+      border-top-width: 0;
+      border-bottom-color: #d1dbe5;
+      top: -7px;
+      &:after {
+        top: -5px;
+        border-top-width: 0;
+        border-bottom-color: #fff;
+        border-width: 6px;
+      }
+    }
+  }
+  .pg-popover__content[x-placement="top"] {
+    margin-bottom: 10px;
+    .arrow {
+      .arrow-common();
+      border-bottom-width: 0;
+      border-top-color: #d1dbe5;
+      bottom: -7px;
+      &:after {
+        bottom: -5px;
+        border-bottom-width: 0;
+        border-top-color: #fff;
+        border-width: 6px;
+      }
+    }
+  }
+}

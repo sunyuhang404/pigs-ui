@@ -17,7 +17,7 @@ module.exports = {
     index: path.resolve(__dirname, '../src/dev.js')
   },
   output: {
-    path: resolveApp('./dist/lib'),
+    path: resolveApp('./docs'),
     filename: 'index.js',
     // publicPath: '/',
     // library: 'pigs',
@@ -110,10 +110,10 @@ module.exports = {
         from: path.resolve(__dirname, '../README.md'),
         to: '../',
       },
-      {
-        from: path.resolve(__dirname, '../src/packages'),
-        to: '../packages',
-      },
+      // {
+      //   from: path.resolve(__dirname, '../src/packages'),
+      //   to: '../packages',
+      // },
     ]),
     // new MiniCssExtractPlugin({
     //   filename: '[name].css'

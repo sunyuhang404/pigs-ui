@@ -1,0 +1,112 @@
+
+.pg-radio-group {
+  display: inline-block;
+  // width: 100%;
+}
+
+.pg-radio-button {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  .pg-radio-button_label {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #E6E9F3;
+    color: #232747;
+    padding: 7px 22px;
+    cursor: pointer;
+  }
+  .pg-radio-button_child {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+.pg-radio-item {
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  font-size: 0;
+  .pg-radio-input {
+    display: none;
+  }
+  .ie8-radio {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+  .ie8-radio+.pg-radio-item-label {
+    vertical-align: middle;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+  }
+  .pg-radio-item-input {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px #dcdfe6 solid;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 6px;
+    vertical-align: top;
+  }
+  .pg-radio-item-label {
+    vertical-align: middle;
+    max-width: 85%;
+    word-break: break-word;
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 400;
+    color: #232747;
+  }
+}
+
+.is-active {
+  .pg-radio-button_label {
+    background-color: #3F7AFF;
+    color: #fff;
+  }
+  .pg-radio-item-input {
+    border-color: #3F7AFF;
+    &:after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      margin-top: -5px;
+      margin-left: -5px;
+      border-radius: 50%;
+      background-color: #3F7AFF;
+    }
+  }
+}
+
+.is-disabled.pg-radio-item {
+  cursor: not-allowed;
+  .pg-radio-item-input {
+    border-color: #dcdfe6;
+    background-color: #f5f5f5;
+    &:after {
+      content: "";
+      background-color: rgba(0,0,0,0.2);
+    }
+  }
+}
+.is-disabled.pg-radio-button {
+  .pg-radio-button_label {
+    cursor: not-allowed;
+    color: #bfcbd9;
+    background-color: #f5f5f5;
+  }
+}

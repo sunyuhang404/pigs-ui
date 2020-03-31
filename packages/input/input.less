@@ -1,0 +1,115 @@
+.pg-input {
+  cursor: text;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #dcdfe6;
+  border-radius: 2px;
+  position: relative;
+  &:focus {
+    border-color: #409eff;
+  }
+  &::-webkit-input-placeholder {
+    font-size: 12px;
+  }
+  .pg-input__inner {
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 22px;
+    padding: 4px 6px;
+    border: none;
+    color: #232747;
+    font-size: 16px;
+    outline: none;
+    vertical-align: middle;
+    transition: all .2s ease-in-out;
+    font-weight: 300;
+    &:focus {
+      border-color: #409eff;
+    }
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+  }
+  .pg-input-icon_clear + .pg-input__inner {
+    padding-right: 35px;
+  }
+  .pg-input-icon_clear {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    width: 30px;
+    height:30px;
+    background-image: url('../../assets/images/clear.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  >i {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    margin-top: -8px;
+    display: inline-block;
+    background-size: 60%;
+  }
+  i + .pg-input-icon_clear {
+    right: 30px;
+  }
+  i + .pg-input__inner {
+    padding-right: 35px;
+  }
+  .clear.icon {
+    padding-right: 60px;
+  }
+  input[disabled] {
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: not-allowed;
+  }
+  .pg-input-has-prefix {
+    border-radius: 0 4px 4px 0 !important;
+  }
+  .pg-input-has-suffix {
+    border-radius: 4px 0 0 4px !important;
+  }
+  .pg-input-has-font-both {
+    border-radius: 0 !important;
+  }
+  // 前缀
+  .pg-input-prefix {
+    display: table-cell;
+    width: 1px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 11px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: rgba(0,0,0,.65);
+    text-align: center;
+    background-color: #fafafa;
+    border-right: 1px solid #d9d9d9;
+    border-radius: 4px 0 0 4px;
+  }
+  // 后缀
+  .pg-input-suffix {
+    display: table-cell;
+    width: 1px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 11px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: rgba(0,0,0,.65);
+    text-align: center;
+    background-color: #fafafa;
+    border-left: 1px solid #d9d9d9;
+    border-radius: 0 4px 4px 0;
+  }
+}
+.pg-input__prefix {
+  border: none;
+}
