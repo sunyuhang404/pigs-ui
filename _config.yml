@@ -1,0 +1,27 @@
+# Site
+title: Pigs-UI #标题
+subtitle: welcome to Pigs-UI #副标题
+description:        #描述
+author: sunyuhang         #作者
+language: zh-CN #语言
+timezone:        #时区
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://sunyuhang404.github.io/
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: hexo-theme-landfarz   #主题设置
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:   #部署, 发布在 GitHub 上面
+  type: git
+  repo: https://github.com/sunyuhang404/pigs-ui.git
+  branch: master
