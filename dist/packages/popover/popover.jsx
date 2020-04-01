@@ -21,6 +21,7 @@ export default class Popover extends Component {
 
     if (this.props.trigger === 'click') {
       this.reference.addEventListener('click', () => {
+        console.log('click');
         this.setState({ showPopover: !this.state.showPopover });
       });
     } else if (this.props.trigger === 'hover') {
@@ -56,6 +57,7 @@ export default class Popover extends Component {
 
   handleMouseEnter = () => {
     clearTimeout(this.timer);
+    console.log('hover');
     this.setState({ showPopover: true });
   }
 

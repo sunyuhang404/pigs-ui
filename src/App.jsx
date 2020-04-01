@@ -1,18 +1,63 @@
 import Nerv from 'nervjs';
-import './index.css';
+import './index.less';
 import func from '@/util/func';
-import Views from '@/layout/view';
+import menu from '@/menu';
 
 export default class App extends Nerv.Component {
   constructor() {
     super();
+    this.state = { current: '' };
     func();
   }
 
+  // render() {
+  //   return (
+  //     <div className="pg-content">
+  //       <Views></Views>
+  //     </div>
+  //   );
+  // }
+
+  componentDidMount() {
+    this.setState({ current: menu[0] });
+  }
+
+  handleMenuItemClick = (item) => {
+    this.setState({ current: item });
+  }
+  
   render() {
+    const Com = this.state.current.component;
     return (
       <div className="pg-content">
-        <Views></Views>
+        <div className="pg-views">
+          <div className="pg-views-top-menu">
+            <i className="pg-views-icon"></i>
+            <p>PigS-UI</p>
+          </div>
+          <div className="pg-content-info">
+            <div className="pg-component-menu">
+              {
+                menu.map((item, index) => {
+                  return (
+                    <div
+                      key={`nerv-ui-menu__${index}`}
+                      className={`pg-component-menu__item ${this.state.current.path === item.path ? 'active' : ''}`}
+                      onClick={() => this.handleMenuItemClick(item)}
+                    >
+                      { item.name}
+                    </div>
+                  )
+                })
+              }
+            </div>
+            <div className="pg-views-router">
+              <div className="pg-router-view">
+                { Com ? <Com /> : null }
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

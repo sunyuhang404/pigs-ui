@@ -3,7 +3,7 @@ import Nerv from 'nervjs';
 import Component from '@/libs/component';
 import './home.less';
 
-import Markdown from '@/libs/markdown';
+// import Markdown from '@/libs/markdown';
 
 export default class Home extends Component {
   constructor(props) {

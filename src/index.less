@@ -1,3 +1,49 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background-color: #F3F4F8;
+}
+
+#app, .pg-content {
+  height: 100%;
+}
+
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.tapered-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+  background-color: #fff;
+}
+.tapered-scroll::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-image: linear-gradient(-180deg, #a3aaff 3%, #ade4ff);
+}
+
+.scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
 
 .pg-views {
   position: relative;
@@ -15,7 +61,7 @@
       display: inline-block;
       width: 60px;
       height: 40px;
-      background-image: url('../assets/icon_pigs.png');
+      background-image: url('./assets/icon_pigs.png');
       background-repeat: no-repeat;
       background-size: 100%;
       vertical-align: middle;
@@ -30,9 +76,11 @@
       font-family: monospace;
     }
   }
-  .pg-content {
+  .pg-content-info {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
     .pg-component-menu {
-      position: absolute;
       left: 40px;
       display: inline-block;
       width: 200px;
@@ -49,10 +97,9 @@
       }
     }
     .pg-views-router {
+      flex: 1;
       display: inline-block;
-      width: 100%;
       box-sizing: border-box;
-      padding-left: 240px;
     }
   }
 }

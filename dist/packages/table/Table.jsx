@@ -28,20 +28,20 @@ export default class Table extends Component {
   }
 
   renderHeader() {
-    if (!this.getHeader()) {
+    const tableProps = this.getHeader();
+    if (!tableProps) {
       return;
     }
-    const tableProps = this.getHeader();
     return (
       <TableHeader tableProps={tableProps}></TableHeader>
     )
   }
 
   renderBody() {
-    if (!this.getHeader()) {
+    const tableProps = this.getHeader();
+    if (!tableProps) {
       return;
     }
-    const tableProps = this.getHeader();
     tableProps.data = this.props.data;
     if (tableProps.data && tableProps.data.length) {
       return (
@@ -55,7 +55,7 @@ export default class Table extends Component {
   render() {
     const { border } = this.props;
     return (
-      <div className="pg-table" ref="pgTable">
+      <div className="pg-table">
         <div
           className={this.className('pg-table__header', {
             'pg-table__header-border': border

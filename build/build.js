@@ -5,16 +5,29 @@ const path = require('path');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const commander = require('commander');
-const webpackConfig = require('./webpack.config.prod');
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpackConfigPub = require('./webpack.config.pub');
+const webpackConfigProd = require('./webpack.config.prod');
 
 const spinner = ora('building for production...').start();
 commander
   .version('0.0.2')
   .option('-t, --type <string>', 'Set Build Type, like nw win or xp.')
   .parse(process.argv);
-const type = process.argv[2] || 'nw';
 
-webpack(webpackConfig, async (err, stats) => {
+const type = process.argv[2];
+const report = process.argv[3];
+
+if (report) {
+  if (type === 'pub') {
+    webpackConfigPub.plugins.push(new BundleAnalyzer());
+  } else {
+    webpackConfigProd.plugins.push(new BundleAnalyzer());
+  }
+}
+
+
+webpack(type === 'pub' ? webpackConfigPub : webpackConfigProd, async (err, stats) => {
   if (err) throw err;
   process.stdout.write(`${stats.toString({
     colors: true,

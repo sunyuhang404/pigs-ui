@@ -7,7 +7,7 @@
 ### Install
 
 ```bash
-npm install pigs-ui --save
+npm i pigs-ui -D
 ```
 
 

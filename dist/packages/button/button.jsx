@@ -11,12 +11,6 @@ export default class Button extends Component {
   }
   render() {
     const { className, type, disabled, hover, size, style } = this.props;
-    // let typeName = '';
-    // if (hover) {
-    //   typeName = `pg-button-${type}-hover`;
-    // } else {
-    //   typeName = `pg-button-${type}`;
-    // }
     const typeName = `pg-button-${type}${hover ? '-hover' : ''}`
     return (
       <div className={this.className('pg-button', className, typeName, `pg-button__${size}`, {
