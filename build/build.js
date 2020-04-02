@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const webpack = require('webpack');
 const commander = require('commander');
 const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const webpackConfigPub = require('./webpack.config.component');
+const webpackConfigComp = require('./webpack.config.component');
 const webpackConfigProd = require('./webpack.config.prod');
 
 const spinner = ora('building for production...').start();
@@ -19,20 +19,20 @@ const type = process.argv[2];
 const report = process.argv[3];
 
 if (report) {
-  if (type === 'pub') {
-    webpackConfigPub.plugins.push(new BundleAnalyzer());
+  if (type === 'dist') {
+    webpackConfigComp.plugins.push(new BundleAnalyzer());
   } else {
     webpackConfigProd.plugins.push(new BundleAnalyzer());
   }
 }
 
 
-webpack(type === 'pub' ? webpackConfigPub : webpackConfigProd, async (err, stats) => {
+webpack(type === 'dist' ? webpackConfigComp : webpackConfigProd, async (err, stats) => {
   if (err) throw err;
   process.stdout.write(`${stats.toString({
     colors: true,
     modules: false,
-    children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
+    children: false,
     chunks: false,
     chunkModules: false,
   })}\n\n`);

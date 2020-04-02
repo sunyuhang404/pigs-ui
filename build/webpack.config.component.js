@@ -19,7 +19,7 @@ const getEntry = () => {
 }
 
 module.exports = merge(baseConfig, {
-  mode: 'development',
+  mode: 'production',
   // devtool: 'inline-source-map',
   entry: Object.assign(getEntry(), {
     index: path.resolve(__dirname, '../src/index.js')
@@ -28,8 +28,6 @@ module.exports = merge(baseConfig, {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
     publicPath: '/',
-    library: 'pigs-ui',
-    libraryExport: 'default',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
@@ -37,17 +35,13 @@ module.exports = merge(baseConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../package.json'),
-        to: '../',
+        to: '../dist',
         ignore: ['.*'],
       },
       {
         from: path.resolve(__dirname, '../README.md'),
-        to: '../',
+        to: '../dist',
       },
-      // {
-      //   from: path.resolve(__dirname, '../src/packages'),
-      //   to: '../packages',
-      // },
     ]),
   ]
 });

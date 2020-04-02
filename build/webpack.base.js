@@ -9,6 +9,7 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 
 const config = {
@@ -59,15 +60,16 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
         ],
       },
       {
         test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          // 'style-loader',
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -91,13 +93,14 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'theme/style/[name].css'
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: 'theme/style/[name].css'
+    // }),
     new optimizeCss({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
     }),
+    new FriendlyErrorsWebpackPlugin(),
     new HappyPack({
       // 开启babel-loader的缓存
       loaders: ['babel-loader?cacheDirectory=true']
