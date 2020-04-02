@@ -3,14 +3,14 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(baseConfig, {
   mode: 'development',
   devServer: {
     host: '0.0.0.0',
     port: 8888,
-    contentBase: './dist',
+    // contentBase: './dist',
     hot: true,
     stats: 'errors-only'
   },
@@ -23,6 +23,17 @@ module.exports = merge(baseConfig, {
   },
   devtool: 'source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      minify: {
+        removeAttributeQuotes: false,
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空白符与换行符
+        minifyCSS: true// 压缩内联css
+      },
+      hash: true,
+      template: path.resolve(__dirname, '../index.html'),
+      favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
+    })
   ]
 })

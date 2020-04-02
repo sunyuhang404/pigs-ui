@@ -10,14 +10,6 @@ export default class App extends Nerv.Component {
     func();
   }
 
-  // render() {
-  //   return (
-  //     <div className="pg-content">
-  //       <Views></Views>
-  //     </div>
-  //   );
-  // }
-
   componentDidMount() {
     this.setState({ current: menu[0] });
   }

@@ -15,6 +15,20 @@ export default class Dialog extends Component {
     this.enableScroll(this.props.visible);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.body) {
+      const clientHeight = this.body.clientHeight;
+      const bodyHeight = window.innerHeight;
+      if (clientHeight + 80 > bodyHeight) {
+        this.content.style.cssText = `
+          height: ${bodyHeight - 130}px;
+          overflow: hidden;
+          overflow-y: scroll;
+        `;
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.enableScroll(nextProps.visible);
   }
@@ -67,7 +81,7 @@ export default class Dialog extends Component {
     return (
       <View visible={this.props.visible}>
         <div className={this.className('pg-dialog__warpper')} onClick={() => this.handleClickWarpper()}>
-          <div className={this.className('pg-dialog__body', this.props.className, {
+          <div ref={body => this.body = body} className={this.className('pg-dialog__body', this.props.className, {
             'pg-dialog__tiny': this.props.size === 'tiny',
             'pg-dialog__small': this.props.size === 'small',
             'pg-dialog__large': this.props.size === 'large',

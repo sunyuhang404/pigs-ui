@@ -8,6 +8,7 @@ const optimizeCss = require('optimize-css-assets-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 const config = {
@@ -37,8 +38,8 @@ const config = {
           {
             loader: 'url-loader',
             options: {
-              limit: 20480, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
-              outputPath: 'assets/img/', // 图片打包后存放的目录
+              limit: 1024, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
+              outputPath: 'theme/image/', // 图片打包后存放的目录
             },
           },
         ],
@@ -49,8 +50,8 @@ const config = {
           {
             loader: 'url-loader',
             options: {
-              limit: 20480, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
-              outputPath: 'assets/font/', // 图片打包后存放的目录
+              limit: 1024, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
+              outputPath: 'theme/font/', // 图片打包后存放的目录
             },
           },
         ],
@@ -65,8 +66,8 @@ const config = {
       {
         test: /\.less$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -89,25 +90,22 @@ const config = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name]_[contenthash:8].css'
+      filename: 'theme/style/[name].css'
     }),
     new optimizeCss({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true,
     }),
     new HappyPack({
       // 开启babel-loader的缓存
       loaders: ['babel-loader?cacheDirectory=true']
     }),
-    new PurgecssPlugin({
-      // paths 是绝对路径 多页面的时候 paths传一个数组
-      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true })
-    }),
+    // new PurgecssPlugin({
+    //   // paths 是绝对路径 多页面的时候 paths传一个数组
+    //   paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true })
+    // }),
     new HardSourceWebpackPlugin()
   ],
   optimization: {

@@ -1,7 +1,6 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 const merge = require('webpack-merge');
@@ -30,7 +29,6 @@ module.exports = smp.wrap(merge(baseConfig, {
       hash: true,
       template: path.resolve(__dirname, '../index.html'),
       favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
-    }),
-    new CleanWebpackPlugin()
+    })
   ]
 }))

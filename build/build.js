@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const webpack = require('webpack');
 const commander = require('commander');
 const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const webpackConfigPub = require('./webpack.config.pub');
+const webpackConfigPub = require('./webpack.config.component');
 const webpackConfigProd = require('./webpack.config.prod');
 
 const spinner = ora('building for production...').start();
