@@ -12,12 +12,5 @@
   </head>
   <body>
     <div id="app"></div>
-    <% for (var chunkName in htmlWebpackPlugin.files.chunks) { %> <% if
-    (chunkName === 'es5-polyfill') continue; %>
-    <script
-      type="text/javascript"
-      src="<%= htmlWebpackPlugin.files.chunks[chunkName].entry %>"
-    ></script>
-    <% } %>
   </body>
 </html>

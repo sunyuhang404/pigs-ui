@@ -36,4 +36,4 @@ module.exports = merge(baseConfig, {
       favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
     })
   ]
-})
+});

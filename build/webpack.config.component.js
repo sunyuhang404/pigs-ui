@@ -21,12 +21,13 @@ const getEntry = () => {
 module.exports = merge(baseConfig, {
   mode: 'production',
   // devtool: 'inline-source-map',
-  entry: Object.assign(getEntry(), {
-    index: path.resolve(__dirname, '../src/index.js')
-  }),
+  // entry: Object.assign(getEntry(), {
+  //   index: path.resolve(__dirname, '../src/index.js')
+  // }),
+  entry: getEntry(),
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js',
+    filename: 'lib/[name].js',
     publicPath: '/',
     libraryTarget: 'umd',
     umdNamedDefine: true,

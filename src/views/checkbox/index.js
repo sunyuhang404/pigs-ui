@@ -13,6 +13,7 @@ export default class InputViews extends Nerv.Component {
     this.state = {
       checkboxGroup: ['备选项1', '选中禁用'],
       checkboxGroup2: [1],
+      singleCheckbox: false,
       indeterminate: false,
       isIndeterminate: true,
       list: [
@@ -217,6 +218,11 @@ export default class InputViews extends Nerv.Component {
     });
   }
 
+  handleSingleChange = (val) => {
+    console.log(val)
+    this.setState({ singleCheckbox: val });
+  }
+
   render() {
     return (
       <div className="pg-view">
@@ -226,7 +232,7 @@ export default class InputViews extends Nerv.Component {
         <p className="title use-title">基础用法</p>
         <p className="sub-title">单独使用可以表示两种状态之间的切换.</p>
         <CollapseView code={this.renderCheckbox().code} desc={this.renderCheckbox().desc}>
-          <Checkbox label="备选项" value="备选项"></Checkbox>
+          <Checkbox label="备选项" trueLabel="true" indeterminate={true} falseLabel="false" checked={this.state.singleCheckbox} onChange={(val, checked) => this.handleSingleChange(checked)}></Checkbox>
         </CollapseView>
 
         <p className="title use-title">禁用状态</p>
