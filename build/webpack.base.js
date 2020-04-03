@@ -8,7 +8,6 @@ const optimizeCss = require('optimize-css-assets-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 
@@ -17,7 +16,7 @@ const config = {
     symlinks: true,
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.html', '.css', '.scss', '.less'],
     alias: {
-      react: 'nervjs',
+      // react: 'nervjs',
       'react-dom': 'nervjs',
       'create-react-class': 'nerv-create-class',
       '@': path.resolve(__dirname, '../src'),
@@ -92,7 +91,6 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'lib/[name]/style.css'
     }),
