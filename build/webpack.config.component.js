@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 const getEntry = () => {
@@ -38,6 +39,9 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'lib/[name]/style.css'
+    }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../package.json'),

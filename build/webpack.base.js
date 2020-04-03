@@ -92,7 +92,7 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'lib/[name]/style.css'
+      filename: '[name].css'
     }),
     new optimizeCss({
       assetNameRegExp: /\.css$/g,
