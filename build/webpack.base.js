@@ -60,16 +60,16 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
         ],
       },
       {
         test: /\.less$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -93,9 +93,9 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    // new MiniCssExtractPlugin({
-    //   filename: 'theme/style/[name].css'
-    // }),
+    new MiniCssExtractPlugin({
+      filename: 'lib/[name]/style.css'
+    }),
     new optimizeCss({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
