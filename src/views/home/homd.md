@@ -10,23 +10,6 @@
 npm i pigs-ui -D
 ```
 
-:::demo 额外的尺寸：`large`、`small`、`mini`，通过设置`size`属性来配置它们。
-
-```js
-render() {
-  return (
-    <div>
-      <Button type="primary" size="large">大型按钮</Button>
-      <Button type="primary">正常按钮</Button>
-      <Button type="primary" size="small">小型按钮</Button>
-      <Button type="primary" size="mini">超小按钮</Button>
-    </div>
-  )
-}
-```
-:::
-
-
 ### 引入 Pigs
 
 需要借助 babel-plugin-component, 我们可以只引入需要的组件, 以达到减小项目的体积
