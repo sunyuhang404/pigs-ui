@@ -11,7 +11,8 @@ export default class App extends Nerv.Component {
   }
 
   componentDidMount() {
-    this.setState({ current: menu[0] });
+    // this.setState({ current: menu[0] });
+    this.setState({ current: menu.find(item => item.path.includes('checkbox')) });
   }
 
   handleMenuItemClick = (item) => {

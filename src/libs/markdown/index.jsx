@@ -1,25 +1,87 @@
 import Nerv from 'nervjs';
 import marked from 'marked';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/highlight';
+// import 'highlight.js/styles/monokai-sublime.css';
 import 'highlight.js/styles/github.css';
+import CollapseView from '@/libs/collapseview';
+
+
+hljs.initHighlightingOnLoad();
+
+const options = {
+  gfm: true,
+  tables: true, // 允许表格
+  breaks: true, // 允许换行
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  xhtml: false,
+  highlight: (code) => hljs.highlightAuto(code).value,
+};
 
 export default class Markdown extends Nerv.Component {
-  render() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      highlight: (code) => hljs.highlightAuto(code).value,
-      pedantic: false,
-      gfm: true,
-      tables: true,
-      breaks: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      xhtml: false,
+  constructor(props) {
+    super(props);
+
+    this.components = new Map;
+    this.renderer = new marked.Renderer();
+    this.renderer.table = (header, body) => {
+      return `<table class="pg-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+    };
+  }
+
+  componentDidMount() {
+    this.renderDOM();
+  }
+
+  componentDidUpdate() {
+    this.renderDOM();
+  }
+
+  renderDOM() {
+    for (const [id, component] of this.components) {
+      const div = document.getElementById(id);
+      if (div instanceof HTMLElement) {
+        Nerv.render(component, div);
+      }
+    }
+  }
+
+  getHtml = (document) => {
+    const html = marked(document.replace(/:::\s?demo\s?([^]+?):::/g, (match, p1, offset) => {
+      const id = offset.toString(36);
+      const sourceList = p1.match(/([^]*)\n?(```[^]+```)/);
+      const props = {
+        name: this.constructor.name,
+        demo: sourceList[2],
+        desc: sourceList[1],
+        code: sourceList[2].match(/```(.*)\n?([^]+)```/)[2]
+      };
+      this.components.set(
+        id,
+        Nerv.createElement(
+          <CollapseView { ...props } />,
+          Object.assign(
+            { name: this.constructor.name.toLowerCase() }
+          ),
+          p1
+        )
+      );
+      return `<div id=${id}></div>`;
+    }), {
+        renderer: this.renderer,
+      ...options
     });
-    const html = marked(this.props.content);
-    return (
-      <div dangerouslySetInnerHTML={{ __html: html }}></div>
-    )
+    return html;
+  }
+
+  render() {
+    const document = this.document();
+    if (typeof document === 'string') {
+      this.components.clear();
+      return <div dangerouslySetInnerHTML={{ __html: this.getHtml(document) }}></div>
+    }
+    return <span />
   }
 }

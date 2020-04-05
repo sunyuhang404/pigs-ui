@@ -100,6 +100,45 @@ ul {
       flex: 1;
       display: inline-block;
       box-sizing: border-box;
+      .pg-router-view {
+        h1, h2, h3, h4, h5, h6 {
+          color: #1f2f3d;
+          font-weight: normal;
+        }
+        h3 {
+          margin-top: 45px;
+        }
+        p {
+          color: #5e6d82;
+        }
+        .pg-table {
+          width: 100%;
+          border-collapse: collapse;
+          thead {
+            font-size: 14px;
+            line-height: 20px;
+            border-collapse: collapse;
+            color: #5e6d82;
+            th {
+              padding: 10px;
+              max-width: 250px;
+              text-align: left;
+              border-top: 1px solid #eaeefb;
+              background-color: #EFF2F7;
+              white-space: nowrap;
+            }
+          }
+          tbody {
+            color: #5e6d82;
+            font-size: 14px;
+            td {
+              border-bottom: 1px solid #eaeefb;
+              padding: 10px;
+              max-width: 250px;
+            }
+          }
+        }
+      }
     }
   }
 }

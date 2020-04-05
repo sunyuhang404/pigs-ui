@@ -16,7 +16,8 @@ const config = {
     symlinks: true,
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.html', '.css', '.scss', '.less'],
     alias: {
-      // react: 'nervjs',
+      react: 'nervjs',
+      React: 'Nerv',
       'react-dom': 'nervjs',
       'create-react-class': 'nerv-create-class',
       '@': path.resolve(__dirname, '../src'),
