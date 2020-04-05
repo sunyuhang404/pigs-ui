@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
@@ -10,15 +11,18 @@ const smp = new SpeedMeasurePlugin();
 
 module.exports = smp.wrap(merge(baseConfig, {
   mode: 'production',
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   entry: {
     index: path.resolve(__dirname, '../src/dev.js')
   },
   output: {
     path: path.resolve(__dirname, '../docs'),
-    filename: 'index.js',
+    filename: '[name]_[chunkhash:8].js',
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }),
     new HtmlWebpackPlugin({
       minify: {
         removeAttributeQuotes: false,
