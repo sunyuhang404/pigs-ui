@@ -45,7 +45,7 @@ export default class Checkbox extends Component {
         'is-active': checked,
         'is-indeterminate': checked && this.props.indeterminate,
         'is-disabled': this.isDisabled(),
-      })} for={this.props.label} onClick={() => this.handleClick()}>
+      })} for={this.props.label} key={this.props.key} onClick={() => this.handleClick()}>
         <span>
           <input
             className="pg-checkbox-input"

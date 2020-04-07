@@ -52,7 +52,7 @@ export default class CheckboxGroup extends Component {
     return (
       <div className={this.className('pg-checkbox-group', this.props.className)}>
         {
-          Nerv.Children.map(this.props.children, child => {
+          Nerv.Children.map(this.props.children, (child, index) => {
             if (!child) {
               return null;
             }
@@ -60,10 +60,15 @@ export default class CheckboxGroup extends Component {
             if (elementType !== 'CheckboxButton' && elementType !== 'Checkbox') {
               return null;
             }
-            return Nerv.cloneElement(child, {
-              onChange: this.onChange,
-              checked: this.state.value._findIndex(item => item === child.props.value) !== -1,
-            })
+            return Nerv.cloneElement(child, Object.assign(
+              {},
+              child.props,
+              {
+                key: `checkbox-item-${index}`,
+                onChange: this.onChange,
+                checked: this.state.value._findIndex(item => item === child.props.value) !== -1,
+              }
+            ))
           })
         }
       </div>

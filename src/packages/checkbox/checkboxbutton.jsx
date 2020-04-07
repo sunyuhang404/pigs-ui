@@ -6,12 +6,14 @@ export default class CheckboxButton extends Checkbox {
   static elementType = 'CheckboxButton';
 
   render() {
+    const { size } = this.parent().props;
+    console.log(size);
     const checked = this.props.checked !== undefined ? this.props.checked : this.props.value;
     return (
-      <label className={this.className('pg-checkbox-button', this.props.className, {
+      <label className={this.className('pg-checkbox-button', this.props.className, size ? `pg-checkbox-button__${size}` : '', {
         'is-active': checked,
         'is-disabled': this.isDisabled(),
-      })} for={this.props.label} onClick={() => this.handleClick()}>
+      })} for={this.props.label} key={this.props.key} onClick={() => this.handleClick()}>
         <input
           className="pg-checkbox-input"
           type="checkbox"

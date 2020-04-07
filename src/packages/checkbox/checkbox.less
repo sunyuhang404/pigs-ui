@@ -47,16 +47,14 @@
 .pg-checkbox-button {
   display: inline-block;
   box-sizing: border-box;
-  margin-right: 10px;
-  margin-bottom: 10px;
   .pg-checkbox-input {
     display: none;
   }
   .pg-checkbox-button_label {
     display: inline-block;
     vertical-align: middle;
-    border: 1px solid #E6E9F3;
     color: #8186A4;
+    border: 1px solid #E6E9F3;
     padding: 7px 22px;
     cursor: pointer;
   }
@@ -65,11 +63,39 @@
     margin-left: 10px;
     vertical-align: middle;
   }
+  &:not(:first-child) {
+    .pg-checkbox-button_label {
+      border-left: none;
+    }
+  }
+  &:first-child {
+    .pg-checkbox-button_label {
+      border-radius: 3px 0 0 3px;
+    }
+  }
+  &:last-child {
+    .pg-checkbox-button_label {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+}
+.pg-checkbox-button__small {
+  .pg-checkbox-button_label {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+}
+.pg-checkbox-button__large {
+  .pg-checkbox-button_label {
+    padding: 11px 19px;
+    font-size: 16px;
+  }
 }
 
 .is-active {
   .pg-checkbox-button_label {
     background-color: #3F7AFF;
+    border-color: #3F7AFF;
     color: #fff;
   }
   .pg-checkbox-item-input {
