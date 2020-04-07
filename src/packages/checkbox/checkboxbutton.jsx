@@ -8,21 +8,23 @@ export default class CheckboxButton extends Checkbox {
   render() {
     const checked = this.props.checked !== undefined ? this.props.checked : this.props.value;
     return (
-      <div className={this.className('pg-checkbox-button', {
+      <label className={this.className('pg-checkbox-button', this.props.className, {
         'is-active': checked,
         'is-disabled': this.isDisabled(),
-      })}>
-        <span
-          className="pg-checkbox-button_label"
-          onClick={() => this.handleClick()}
-        >
-          { this.renderLabel() }
-        </span>
+      })} for={this.props.label} onClick={() => this.handleClick()}>
+        <input
+          className="pg-checkbox-input"
+          type="checkbox"
+          value={this.props.value}
+          checked={checked}
+          name="pg-checkbox-item"
+        />
+        <span className="pg-checkbox-button_label">{this.renderLabel()}</span>
         {
           Nerv.Children.toArray(this.props.children).length > 0 &&
           <div className="pg-checkbox-button_child">{ this.props.children }</div>
         }
-      </div>
+      </label>
     )
   }
 }
