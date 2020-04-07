@@ -122,19 +122,29 @@ render() {
 ### Checkbox Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| label     | 显示的内容	   | string / number  |     —    |    —     |
-| trueLabel     | 选中时候的值	   | string / number    |     —    |     —    |
-| falseLabel     | 没有选中的值	   | string / number    |     —    |     —    |
-| disabled  | 禁用    | boolean   | true, false   |   false   |
-| value  | 是否勾选	    | boolean   |     —    |   false   |
-| indeterminate  | 设置 indeterminate 状态，只样式控制	| boolean   |     —    |   false   |
+| label | 显示的内容 | string / number |  —  |  —  |
+| trueLabel | 选中时候的值 | string / number  |  —  |  —  |
+| falseLabel | 没有选中的值 | string / number  |  —  |  —  |
+| disabled | 禁用 | boolean  | true, false  |  false  |
+| value | 是否勾选 | boolean  |  —  |  false  |
+| indeterminate | 设置 indeterminate 状态，只样式控制	| boolean  |  —  |  false  |
+
+### Checkbox.Button Attributes
+| 参数      | 说明    | 类型      | 可选值       | 默认值   |
+|---------- |-------- |---------- |-------------  |-------- |
+| value | Radio.Button 的值 | string / number / boolean |  —  |  []  |
+| disabled | 禁用 | boolean | true, false |  false  |
+
 
 ### Checkbox.Group Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value     | 指定选中的选项		   | array  |     —    |    []     |
+| value | 指定选中的选项  | array  |  —  | [] |
+| size | Checkbox.Button 按钮组尺寸	 | string | small, large |  —  |
+| min | 可被勾选的 checkbox 的最大数量 | number |  —  |  []  |
+| max | 可被勾选的 checkbox 的最小数量 | number |  —  |  []  |
 
 ### Checkbox.Group Events
 | 事件名称      | 说明    | 回调参数      |
 |---------- |-------- |---------- |
-| onChange  | 当绑定值发生变化的时候触发 | value |
+| onChange | 当绑定值发生变化的时候触发 | value |

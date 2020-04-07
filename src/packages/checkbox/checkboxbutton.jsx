@@ -7,7 +7,6 @@ export default class CheckboxButton extends Checkbox {
 
   render() {
     const { size } = this.parent().props;
-    console.log(size);
     const checked = this.props.checked !== undefined ? this.props.checked : this.props.value;
     return (
       <label className={this.className('pg-checkbox-button', this.props.className, size ? `pg-checkbox-button__${size}` : '', {

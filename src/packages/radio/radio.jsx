@@ -19,33 +19,37 @@ export default class Radio extends Component {
 
   handleChange = () => {
     if (!this.isDisabled()) {
-      const value = this.props.value ? this.props.value : (this.props.value === 0 ? 0 : this.props.label);
-      this.props.onChange(value, this.props.item);
+      this.props.onChange(this.props.value);
     }
   }
 
   renderIE8Content = () => {
+    if (this.props.checked) {
+      return (
+        <input
+          key="radiochecked"
+          className="ie8-radio"
+          onclick={() => this.handleChange(this.props.value)}
+          id={ this.props.label }
+          name={ this.props.label }
+          value={ this.props.value }
+          type="radio"
+          disabled={ this.isDisabled() }
+          checked
+        /> 
+      )
+    }
     return (
-      this.props.checked ? 
       <input
-        key="radiochecked"
-        onclick={() => {this.handleChange(value)}}
-        id={this.props.label}
+        key="radionotchecked"
+        onclick={() => this.handleChange()}
+        id={ this.props.label }
+        name={ this.props.label }
+        value={ this.props.value }
         className="ie8-radio"
         type="radio"
-        value={this.props.value}
-        disabled={this.props.disabled}
-        checked
-        name={this.props.label} /> : 
-        <input
-          key="radionotchecked"
-          onclick={() => {this.handleChange()}}
-          id={this.props.label}
-          className="ie8-radio"
-          type="radio"
-          disabled={this.props.disabled}
-          value={this.props.value} 
-          name={this.props.label}/>
+        disabled={ this.isDisabled() }
+      />
     )
   }
 
@@ -61,11 +65,11 @@ export default class Radio extends Component {
               <input
                 className="pg-radio-input"
                 type="radio"
-                value={this.props.value}
-                checked={this.props.checked}
-                name={this.props.label}
+                value={ this.props.value }
+                checked={ this.props.checked }
+                name={ this.props.label }
                 onChange={() => this.handleChange()} />
-              <span className={this.className('pg-radio-item-input', {'checked': this.props.checked})}></span>
+              <span className={this.className('pg-radio-item-input', { 'checked': this.props.checked })}></span>
             </span>
           )
         }

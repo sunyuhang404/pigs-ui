@@ -46,12 +46,12 @@ render() {
 render() {
   return (
     <div>
-      <p>默认显示颜色</p>
+      <p style={{ fontSize: '14px' }}>默认显示颜色</p>
       <Button type="success">成功</Button>
       <Button type="warning">警告</Button>
       <Button type="danger">危险</Button>
       <Button type="info">信息</Button>
-      <p>hover 显示颜色</p>
+      <p style={{ fontSize: '14px' }}>hover 显示颜色</p>
       <Button hover={true} type="success">成功</Button>
       <Button hover={true} type="warning">警告</Button>
       <Button hover={true} type="danger">危险</Button>

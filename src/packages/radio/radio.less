@@ -1,20 +1,21 @@
 
 .pg-radio-group {
   display: inline-block;
-  // width: 100%;
 }
 
 .pg-radio-button {
   display: inline-block;
   box-sizing: border-box;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  .pg-radio-input {
+    display: none;
+  }
   .pg-radio-button_label {
     display: inline-block;
     vertical-align: middle;
     border: 1px solid #E6E9F3;
-    color: #232747;
     padding: 7px 22px;
+    color: #232747;
+    font-size: 14px;
     cursor: pointer;
   }
   .pg-radio-button_child {
@@ -22,11 +23,38 @@
     margin-left: 10px;
     vertical-align: middle;
   }
+  &:not(:last-child) {
+    .pg-radio-button_label {
+      border-right: none;
+    }
+  }
+  &:first-child {
+    .pg-radio-button_label {
+      border-radius: 3px 0 0 3px;
+    }
+  }
+  &:last-child {
+    .pg-radio-button_label {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+}
+.pg-radio-button__small {
+  .pg-radio-button_label {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+}
+.pg-radio-button__large {
+  .pg-radio-button_label {
+    padding: 7px 22px;
+    font-size: 12px;
+  }
 }
 
 .pg-radio-item {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
   cursor: pointer;
   font-size: 0;
   .pg-radio-input {
@@ -39,7 +67,7 @@
     font-weight: bold;
     vertical-align: middle;
   }
-  .ie8-radio+.pg-radio-item-label {
+  .ie8-radio + .pg-radio-item-label {
     vertical-align: middle;
   }
   span {
@@ -56,7 +84,8 @@
     border-radius: 50%;
     position: relative;
     margin-right: 6px;
-    vertical-align: top;
+    vertical-align: middle;
+    font-size: 14px;
   }
   .pg-radio-item-label {
     vertical-align: middle;
@@ -69,9 +98,14 @@
   }
 }
 
+.pg-radio-item + .pg-radio-item {
+  margin-left: 12px;
+}
+
 .is-active {
   .pg-radio-button_label {
     background-color: #3F7AFF;
+    border-color: #3F7AFF;
     color: #fff;
   }
   .pg-radio-item-input {
@@ -103,10 +137,12 @@
     }
   }
 }
+
 .is-disabled.pg-radio-button {
   .pg-radio-button_label {
     cursor: not-allowed;
     color: #bfcbd9;
     background-color: #f5f5f5;
+    border-color: #dcdfe6;
   }
 }

@@ -1,6 +1,6 @@
 import Nerv from 'nervjs';
 import Component from '@/libs/component';
-import './radiobutton.less';
+import './radio.less';
 
 export default class RadioGroup extends Component {
   static defaultProps = {
@@ -25,28 +25,20 @@ export default class RadioGroup extends Component {
     }
   }
 
-  onChange = (value, item) => {
-    this.setState({ value: this.props.label ? item : value }, () => {
+  onChange = (value) => {
+    this.setState({ value: value }, () => {
       this.forceUpdate();
       if (this.props.onChange) {
-        this.props.onChange(this.props.label ? item : value, item);
+        this.props.onChange(value);
       }
     });
-  }
-
-  getChildChecked = (child) => {
-    if (this.props.label) {
-      return this.state.value[this.props.label] === child.props.value
-    } else {
-      return this.state.value === child.props.value;
-    }
   }
 
   render() {
     return (
       <div className={this.className('pg-radio-group', this.props.className)}>
         {
-          Nerv.Children.map(this.props.children, child => {
+          Nerv.Children.map(this.props.children, (child, index) => {
             if (!child) {
               return null;
             }
@@ -54,10 +46,15 @@ export default class RadioGroup extends Component {
             if (elementType !== 'RadioButton' && elementType !== 'Radio') {
               return null;
             }
-            return Nerv.cloneElement(child, {
-              onChange: this.onChange,
-              checked: this.getChildChecked(child),
-            })
+            return Nerv.cloneElement(child, Object.assign(
+              {},
+              child.props,
+              {
+                key: `radio-item-${index}`,
+                onChange: this.onChange,
+                checked: this.state.value === child.props.value,
+              }
+            ))
           })
         }
       </div>
