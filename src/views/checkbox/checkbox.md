@@ -76,10 +76,53 @@ render() {
 :::
 
 
+### 按钮样式
+按钮样式的多选组合
+
+:::demo 把 Checkbox 元素换成 Checkbox.Button。还提供了 size 属性，支持 small 和 large 两种。
+
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    group1: ['北京'],
+    group2: ['杭州'],
+  };
+}
+
+handleCheckboxChange(val) {
+  this.setState({ checkboxGroup: val });
+}
+
+render() {
+  return (
+    <div>
+      <Checkbox.Group value={this.state.group1} size="large" onChange={(val) => this.handleCheckboxChange(val)}>
+        <Checkbox.Button label="北京" value="北京"></Checkbox.Button>
+        <Checkbox.Button label="上海" value="上海"></Checkbox.Button>
+        <Checkbox.Button label="深圳" value="深圳"></Checkbox.Button>
+        <Checkbox.Button label="广州" value="广州"></Checkbox.Button>
+        <Checkbox.Button label="杭州" value="杭州"></Checkbox.Button>
+      </Checkbox.Group>
+      <div style={{ marginBottom: '10px' }}></div>
+      <Checkbox.Group value={this.state.group2} size="small" onChange={(val) => this.handleCheckboxChange(val)}>
+        <Checkbox.Button label="北京" value="北京"></Checkbox.Button>
+        <Checkbox.Button label="上海" value="上海"></Checkbox.Button>
+        <Checkbox.Button label="深圳" value="深圳"></Checkbox.Button>
+        <Checkbox.Button label="广州" value="广州"></Checkbox.Button>
+        <Checkbox.Button label="杭州" value="杭州"></Checkbox.Button>
+      </Checkbox.Group>
+    </div>
+  )
+}
+```
+:::
+
+
 ### Checkbox Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| label     | 绑定值	   | string / number  |     —    |    —     |
+| label     | 显示的内容	   | string / number  |     —    |    —     |
 | trueLabel     | 选中时候的值	   | string / number    |     —    |     —    |
 | falseLabel     | 没有选中的值	   | string / number    |     —    |     —    |
 | disabled  | 禁用    | boolean   | true, false   |   false   |
