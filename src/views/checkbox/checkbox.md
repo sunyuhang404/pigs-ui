@@ -7,10 +7,19 @@
 :::demo 最简单的 Checkbox, 使用 label 设置多选框的值
 
 ```js
+constructor(props) {
+  super(props);
+  this.state = { checkbox: false };
+}
+
 render() {
   return (
     <div>
-      <Checkbox label="备选项"></Checkbox>
+      <Checkbox 
+        label="备选项" 
+        value={this.state.checkbox} 
+        onChange={(checked) => { this.setState({ checkbox: checked }) }}>
+      </Checkbox>
     </div>
   )
 }
@@ -27,7 +36,7 @@ render() {
   return (
     <div>
       <Checkbox label="备选项1" disabled></Checkbox>
-      <Checkbox label="备选项2" checked disabled></Checkbox>
+      <Checkbox label="备选项2" value={true} disabled></Checkbox>
     </div>
   )
 }
@@ -40,18 +49,25 @@ render() {
 :::demo Checkbox.Group 能把多个 Checkbox 管理为一组, 只要在 Group 中使用 value 绑定 Array 类型的变量. label 属性不仅是 Checkbox 的介绍, 也是对应的 Checkbox 的值
 
 ```js
+constructor(props) {
+  super(props);
+  this.state = {
+    checkboxGroup: ['选中禁用'],
+  };
+}
+
 handleCheckboxChange(val) {
-  this.setState({ checkboxGroup: val.list });
+  this.setState({ checkboxGroup: val });
 }
 
 render() {
   return (
     <div>
       <Checkbox.Group value={this.state.checkboxGroup} onChange={(val) => this.handleCheckboxChange(val)}>
-        <Checkbox label="备选项1"></Checkbox>
-        <Checkbox label="备选项2"></Checkbox>
-        <Checkbox label="禁用" disabled></Checkbox>
-        <Checkbox label="选中禁用" disabled></Checkbox>
+        <Checkbox label="备选项1" value="备选项1"></Checkbox>
+        <Checkbox label="备选项2" value="备选项2"></Checkbox>
+        <Checkbox label="禁用" value="禁用" disabled></Checkbox>
+        <Checkbox label="选中禁用" value="选中禁用" disabled></Checkbox>
       </Checkbox.Group>
     </div>
   )
@@ -67,8 +83,8 @@ render() {
 | trueLabel     | 选中时候的值	   | string / number    |     —    |     —    |
 | falseLabel     | 没有选中的值	   | string / number    |     —    |     —    |
 | disabled  | 禁用    | boolean   | true, false   |   false   |
-| checked  | 是否勾选	    | boolean   |     —    |   false   |
-| indeterminate  | 是否勾选	    | boolean   |     —    |   false   |
+| value  | 是否勾选	    | boolean   |     —    |   false   |
+| indeterminate  | 设置 indeterminate 状态，只样式控制	| boolean   |     —    |   false   |
 
 ### Checkbox.Group Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
