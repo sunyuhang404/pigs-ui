@@ -72,31 +72,21 @@
   .pg-checkbox-item-input {
     border-width: 1px;
     border-color: #3F7AFF;
-    &::after {
-      content: "";
-      position: absolute;
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      top: 50%;
-      left: 50%;
-      margin-top: -5px;
-      margin-left: -5px;
-      border-radius: 2px;
-      background-color: #4551b1;
-    }
+    background-color: #3F7AFF;
     &:after {
       content: "";
       position: absolute;
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      top: 50%;
-      left: 50%;
-      margin-top: -5px;
-      margin-left: -5px;
-      border-radius: 2px;
-      background-color: #3F7AFF;
+      box-sizing: content-box;
+      width: 4px;
+      height: 8px;
+      left: 4px;
+      top: 1px;
+      border: 2px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+      transform-origin: center;
+      transform: rotate(45deg) scaleY(1);
     }
   }
 }
@@ -121,5 +111,18 @@
 }
 
 .is-indeterminate {
-  
+  .pg-checkbox-item-input:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    box-sizing: border-box;
+    width: calc(100% - 4px);
+    height: 2px;
+    border-radius: 2px;
+    background-color: #fff;
+    left: 2px;
+    top: 50%;
+    margin-top: -1px;
+    transform: rotate(0deg);
+  }
 }

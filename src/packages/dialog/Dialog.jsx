@@ -65,7 +65,7 @@ export default class Dialog extends Component {
     if (this.props.onClose) this.props.onClose();
   }
 
-  getFooter = () => this.getChildList()._find(item => item.name === 'DialogFooter')
+  getFooter = () => Nerv.Children.toArray(this.props.children)._find(item => item && item.type && item.type.elementType === 'DialogFooter')
 
   renderFooter = () => {
     const childrenList = this.getDeepChildList(this.getFooter().props.children);

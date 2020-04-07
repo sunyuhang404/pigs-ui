@@ -7,7 +7,7 @@ export default class Checkbox extends Component {
 
   static defaultProps = {
     indeterminate: false,
-    checked: false,
+    value: false,
     label: '',
     trueLabel: '',
     falseLabel: '',
@@ -23,26 +23,27 @@ export default class Checkbox extends Component {
 
   handleClick = () => {
     if (!this.isDisabled()) {
-      const value = this.props.value !== undefined ? this.props.value : (this.props.value === 0 ? 0 : this.props.label);
-      if (this.props.onChange) this.props.onChange(value, !this.props.checked, this.props.item);
+      const value = this.props.checked !== undefined ? !this.props.checked : !this.props.value;
+      if (this.props.onChange) this.props.onChange(value, this.props.checked !== undefined ? this.props.value : undefined);
     }
   }
 
   renderLabel = () => {
-    if (this.props.checked && this.props.trueLabel && this.props.trueLabel !== '') {
+    if (this.props.value && this.props.trueLabel && this.props.trueLabel !== '') {
       return this.props.trueLabel;
     }
-    if (!this.props.checked && this.props.falseLabel && this.props.falseLabel !== '') {
+    if (!this.props.value && this.props.falseLabel && this.props.falseLabel !== '') {
       return this.props.falseLabel;
     }
     return this.props.label;
   }
 
   render() {
+    const checked = this.props.checked !== undefined ? this.props.checked : this.props.value;
     return (
       <label className={this.className('pg-checkbox-item', this.props.className, {
-        'is-active': this.props.checked,
-        'is-indeterminate': this.props.indeterminate,
+        'is-active': checked,
+        'is-indeterminate': checked && this.props.indeterminate,
         'is-disabled': this.isDisabled(),
       })} for={this.props.label} onClick={() => this.handleClick()}>
         <span>
@@ -50,7 +51,7 @@ export default class Checkbox extends Component {
             className="pg-checkbox-input"
             type="checkbox"
             value={this.props.value}
-            checked={this.props.checked}
+            checked={checked}
             name="pg-checkbox-item"
           />
           <span className="pg-checkbox-item-input"></span>         

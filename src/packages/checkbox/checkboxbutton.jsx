@@ -1,38 +1,27 @@
 import Nerv from 'nervjs';
-import Component from '@/libs/component';
 import './checkbox.less';
+import Checkbox from './checkbox';
 
-export default class CheckboxButton extends Component {
+export default class CheckboxButton extends Checkbox {
   static elementType = 'CheckboxButton';
 
-  parent = () => {
-    return this.context.component;
-  }
-
-  isDisabled = () => {
-    return this.props.disabled || this.parent().props.disabled;
-  }
-
-  handleClick = () => {
-    if (!this.isDisabled()) {
-      const value = this.props.value ? this.props.value : (this.props.value === 0 ? 0 : this.props.label);
-      this.props.onChange(value, !this.props.checked, this.props.item);
-    }
-  }
-
   render() {
+    const checked = this.props.checked !== undefined ? this.props.checked : this.props.value;
     return (
       <div className={this.className('pg-checkbox-button', {
-        'is-active': this.props.checked,
+        'is-active': checked,
         'is-disabled': this.isDisabled(),
       })}>
         <span
           className="pg-checkbox-button_label"
           onClick={() => this.handleClick()}
         >
-          {this.props.label}
+          { this.renderLabel() }
         </span>
-        <div className="pg-checkbox-button_child">{ this.props.children }</div>
+        {
+          Nerv.Children.toArray(this.props.children).length > 0 &&
+          <div className="pg-checkbox-button_child">{ this.props.children }</div>
+        }
       </div>
     )
   }

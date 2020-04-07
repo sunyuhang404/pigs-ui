@@ -25,39 +25,19 @@ export default class CheckboxGroup extends Component {
     }
   }
 
-  onChange = (value, checked, item) => {
-    const index = this.state.value._findIndex(item => {
-      if (this.props.label) {
-        return item[this.props.label] === value;
-      } else {
-        return item === value;
-      }
-    });
+  onChange = (checked, value) => {
     if (checked) {
-      if (index === -1) {
-        this.state.value.push(this.props.label ? item : value);
-      }
+      this.state.value.push(value);
     } else {
-      this.state.value.splice(index, 1);
+      const index = this.state.value._findIndex(item => item === value);
+      if (index !== -1) {
+        this.state.value.splice(index, 1);
+      }
     }
     this.forceUpdate();
     if (this.props.onChange) {
-      this.props.onChange({
-        list: this.state.value,
-        current: item,
-        checked
-      });
+      this.props.onChange(this.state.value);
     }
-  }
-
-  getChildChecked = (child) => {
-    return this.state.value._find(item => {
-      if (this.props.label) {
-        return item[this.props.label] === child.props.value;
-      } else {
-        return item === child.props.value;
-      }
-    });
   }
 
   render() {
@@ -74,7 +54,7 @@ export default class CheckboxGroup extends Component {
             }
             return Nerv.cloneElement(child, {
               onChange: this.onChange,
-              checked: this.getChildChecked(child),
+              checked: this.state.value._findIndex(item => item === child.props.value) !== -1,
             })
           })
         }
