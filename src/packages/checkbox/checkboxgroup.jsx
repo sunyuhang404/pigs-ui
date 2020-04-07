@@ -6,6 +6,8 @@ export default class CheckboxGroup extends Component {
   static defaultProps = {
     disabled: false,
     value: [],
+    min: undefined,
+    max: undefined,
   };
 
   constructor(props) {
@@ -27,11 +29,17 @@ export default class CheckboxGroup extends Component {
 
   onChange = (checked, value) => {
     if (checked) {
-      this.state.value.push(value);
+      if (this.props.max !== undefined) {
+        (this.props.max > this.state.value.length) && this.state.value.push(value);
+      } else {
+        this.state.value.push(value);
+      }
     } else {
       const index = this.state.value._findIndex(item => item === value);
-      if (index !== -1) {
-        this.state.value.splice(index, 1);
+      if (this.props.min !== undefined) {
+        (this.state.value.length > this.props.min) && this.state.value.splice(index, 1)
+      } else {
+        index !== -1 && this.state.value.splice(index, 1);
       }
     }
     this.forceUpdate();
