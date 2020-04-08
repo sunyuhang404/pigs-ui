@@ -82,15 +82,6 @@ export default class FormViews extends Nerv.Component {
         <p className="sub-title">包括各种表单项，比如输入框、选择器、开关、单选框、多选框等.</p>
         <CollapseView code={this.renderForm().code} desc={this.renderForm().desc}>
           <Form model={this.state.model} ref="form" rules={this.state.rules}>
-            {
-              // this.state.list.map((item, index) => {
-              //   return (
-              //     <Form.Item label={item.label} prop={item.prop} index={index} key={index} required={item.required}>
-              //       <Input></Input>
-              //     </Form.Item>
-              //   )
-              // })
-            }
             <Form.Item label="姓名" prop="name" required>
               <Input></Input>
             </Form.Item>

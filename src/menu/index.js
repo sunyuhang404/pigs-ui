@@ -45,13 +45,13 @@ const routers = [
   },
   {
     path: '/form',
-    name: 'Form 表单',
+    name: 'Form 表单（未完成）',
     exact: false,
     component: Form,
   },
   {
     path: '/select',
-    name: 'Select 选择器',
+    name: 'Select 选择器（未完成）',
     exact: false,
     component: Select,
   },

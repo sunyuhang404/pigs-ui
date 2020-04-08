@@ -5,7 +5,6 @@ import CollapseView from '@/layout/collapse-view/collapseView';
 
 import Dialog from '@/packages/dialog';
 import Button from '@/packages/button';
-import Radio from '@/packages/radio';
 
 export default class ButtonViews extends Nerv.Component {
   constructor(props) {
@@ -42,7 +41,6 @@ export default class ButtonViews extends Nerv.Component {
           defaultValue: 'false',
         },
       ],
-      test: '',
     };
   }
 
@@ -58,15 +56,6 @@ export default class ButtonViews extends Nerv.Component {
   render() {
     return (
       <div className="pg-view">
-        <Radio.Group
-          value={this.state.test}
-          size="small"
-          onChange={(val) => { this.setState({ test: val }) }}
-        >
-          <Radio.Button label="备选项1" value={1} />
-          <Radio.Button label="备选项2" value={2} />
-          <Radio.Button label="备选项3" value={3} />
-        </Radio.Group>
         <p className="title">Dialog 对话框</p>
         <p className="sub-title">弹窗.</p>
 

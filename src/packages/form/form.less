@@ -3,6 +3,12 @@
   
 }
 
+.pg-form--inline {
+  .pg-form-item {
+    display: inline-block;
+  }
+}
+
 .pg-form-item {
   position: relative;
   margin-bottom: 22px;
@@ -32,6 +38,7 @@
     }
   }
 }
+
 .is-required {
   .pg-form-item__label {
     &::before {
@@ -39,10 +46,5 @@
       color: #f56c6c;
       margin-right: 4px;
     }
-  }
-}
-.inline {
-  .pg-form-item {
-    display: inline-block;
   }
 }
