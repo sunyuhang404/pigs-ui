@@ -34,12 +34,12 @@ const config = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|png|gif|ico)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 1024, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
+              limit: 1024, // 小于1k的图片自动转成base64格式，并且不会存在实体图片
               outputPath: 'theme/image/', // 图片打包后存放的目录
             },
           },
@@ -51,7 +51,7 @@ const config = {
           {
             loader: 'url-loader',
             options: {
-              limit: 1024, // 小于8k的图片自动转成base64格式，并且不会存在实体图片
+              limit: 1024, // 小于1k的图片自动转成base64格式，并且不会存在实体图片
               outputPath: 'theme/font/', // 图片打包后存放的目录
             },
           },

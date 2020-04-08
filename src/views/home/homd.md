@@ -12,7 +12,7 @@ npm i pigs-ui -D
 
 ### 引入 Pigs
 
-需要借助 babel-plugin-component, 我们可以只引入需要的组件, 以达到减小项目的体积
+需要借助 babel-plugin-component, 我们可以只引入需要的组件, 以达到减小项目体积的效果
 首先 安装 babel-plugin-component
 
 ```
