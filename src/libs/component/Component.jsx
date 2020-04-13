@@ -41,8 +41,9 @@ export default class Component extends Nerv.Component {
     }
     return children;
   }
+}
 
-  getCode = (str) => {
-    return str.split('\n').map(item => item.trim()).join('\n').trim();
-  }
+Component.propTypes = {
+  className: Nerv.PropTypes.string,
+  style: Nerv.PropTypes.object
 }

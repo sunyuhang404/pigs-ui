@@ -27,6 +27,7 @@ export default class FormViews extends Nerv.Component {
         name: { required: true, message: '请输入姓名', trigger: 'blur' },
         address: { required: true, message: '请输入地址', trigger: 'blur' },
         age: { required: false, validator: this.checkAge, trigger: 'blur' },
+        sex: { type: 'number', required: true, message: '请选择性别', trigger: 'change' },
         test: { required: true, validator: this.checkTest, trigger: 'change' }
       },
       list: [
@@ -34,6 +35,7 @@ export default class FormViews extends Nerv.Component {
         { label: '地址', prop: 'address', required: true },
         { label: '年龄', prop: 'age' }
       ],
+      input: '',
     };
   }
 
@@ -63,13 +65,20 @@ export default class FormViews extends Nerv.Component {
   }
 
   handleClick = () => {
-    console.log(this.refs.form.getFields());
-    this.refs.form.validator((valid) => {
-      console.log(valid);
+    this.refs.form.validate((valid) => {
+      if (valid) {
+        console.log('验证通过');
+      }
     });
   }
   handleClick2 = () => {
-    this.refs.form.resetField();
+    this.refs.form.resetFields();
+  }
+
+  handleChange = (label, val) => {
+    const model = this.state.model;
+    model[label] = val;
+    this.setState({ model });
   }
 
   render() {
@@ -83,22 +92,22 @@ export default class FormViews extends Nerv.Component {
         <CollapseView code={this.renderForm().code} desc={this.renderForm().desc}>
           <Form model={this.state.model} ref="form" rules={this.state.rules}>
             <Form.Item label="姓名" prop="name" required>
-              <Input></Input>
+              <Input value={this.state.model.name} onChange={(val) => this.handleChange('name', val)}></Input>
             </Form.Item>
             <Form.Item label="地址" prop="address">
-              <Input></Input>
+              <Input value={this.state.model.address} onChange={(val) => this.handleChange('address', val)}></Input>
             </Form.Item>
             <Form.Item label="年龄" prop="age">
-              <Input></Input>
+              <Input value={this.state.model.age} onChange={(val) => this.handleChange('age', val)}></Input>
             </Form.Item>
             <Form.Item label="性别" prop="sex">
-              <Radio.Group value={this.state.model.sex}>
+              <Radio.Group value={this.state.model.sex} onChange={(val) => this.handleChange('sex', val)}>
                 <Radio label="男" value={1}></Radio>
                 <Radio label="女" value={2}></Radio>
               </Radio.Group>
             </Form.Item>
             <Form.Item label="测试" prop="test">
-              <Checkbox.Group value={this.state.model.test}>
+              <Checkbox.Group value={this.state.model.test} onChange={(val) => this.handleChange('test', val)}>
                 <Checkbox label="测试1" value={1}></Checkbox>
                 <Checkbox label="测试2" value={2}></Checkbox>
                 <Checkbox label="测试3" value={3}></Checkbox>

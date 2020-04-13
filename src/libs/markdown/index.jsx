@@ -32,14 +32,14 @@ export default class Markdown extends Nerv.Component {
   }
 
   componentDidMount() {
-    this.renderDOM();
+    this.rerenderDOM();
   }
 
   componentDidUpdate() {
-    this.renderDOM();
+    this.rerenderDOM();
   }
 
-  renderDOM() {
+  rerenderDOM() {
     for (const [id, component] of this.components) {
       const div = document.getElementById(id);
       if (div instanceof HTMLElement) {
@@ -54,17 +54,15 @@ export default class Markdown extends Nerv.Component {
       const sourceList = p1.match(/([^]*)\n?(```[^]+```)/);
       const props = {
         name: this.constructor.name,
-        demo: sourceList[2],
         desc: sourceList[1],
+        demo: sourceList[2],
         code: sourceList[2].match(/```(.*)\n?([^]+)```/)[2]
       };
       this.components.set(
         id,
         Nerv.createElement(
           <CollapseView { ...props } />,
-          Object.assign(
-            { name: this.constructor.name.toLowerCase() }
-          ),
+          Object.assign({ name: this.constructor.name.toLowerCase() }),
           p1
         )
       );

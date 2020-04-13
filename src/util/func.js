@@ -64,7 +64,6 @@ function func() {
     }
     return false;
   };
-
   Array.prototype._indexOf = function (searchElement, fromIndex) {
     let k;
     if (this == null) {
@@ -91,6 +90,40 @@ function func() {
     }
     return -1;
   };
+
+  Object.isObject = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+  }
+  Array.isArray = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Array]';
+  }
+  Object.isString = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object String]';
+  }
+  Object.isNumber = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Number]';
+  }
+  Object.isFunction = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Function]';
+  }
+  Object.isBoolean = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Boolean]';
+  }
+  Object.isNull = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Null]';
+  }
+  Object.isUndefined = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Undefined]';
+  }
+  Object.isEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
+  }
+  String.isNull = (str) => {
+    if (str === '') return true;
+    const regu = "^[ ]+$";
+    const re = new RegExp(regu);
+    return re.test(str);
+  }
 }
 
 export default func;

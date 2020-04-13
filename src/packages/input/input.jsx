@@ -7,38 +7,45 @@ export default class Input extends Component {
   static defaultProps = {
     value: '',
     placeholder: '请输入',
-    prefix: '',                     // 前缀
-    suffix: '',                     // 后缀
+    prefix: '',
+    suffix: '',
     disabled: false,
     icon: null,
     showClear: false
   };
-  constructor(props) {
-    super(props);
-    this.isComposition = false;
+  
+  state = {
+    isComposition: false,
+  };
+
+  formItem() {
+    return this.context.formItem;
   }
 
-  handleCompositionStart = () => this.isComposition = true;
+  handleCompositionStart = () => this.state.isComposition = true
 
   handleCompositionEnd = (e) => {
-    this.isComposition = false;
+    this.state.isComposition = false;
     this.handleChange(e);
   }
 
   handleChange = (e) => {
-    console.log(this.isComposition);
-    if (this.isComposition) return;
+    if (this.state.isComposition) return;
+    if (this.formItem()) this.formItem().handleChange();
     if (this.props.onChange) {
       this.props.onChange(e.target.value || e.data);
     }
   }
 
   handleFocus = (e) => {
-    if (this.props.onFocus) this.props.onFocus(e.target.value || '');
+    const { onFocus } = this.props;
+    if (onFocus) onFocus(e.target.value || '');
   }
 
   handleBlur = (e) => {
-    if (this.props.onBlur) this.props.onBlur(e.target.value || '');
+    if (this.formItem()) this.formItem().handleBlur();
+    const { onBlur } = this.props;
+    if (onBlur) onBlur(e.target.value || '');
   }
 
   handleKeyDown = (e) => {
@@ -52,12 +59,19 @@ export default class Input extends Component {
   handleClickIcon = () => {
     if (this.props.onIconClick) this.props.onIconClick();
   }
+
+  getInputStyle = (hasSuffix) => {
+    return {
+      display: hasSuffix ? 'inline-table' : 'block',
+      borderColor: this.props.border
+    };
+  }
   
   render() {
-    const { className, prefix, suffix } = this.props;
-    const hasSuffix = (prefix !== '' || suffix !== '') ? true : false;
+    const { className, prefix, suffix, disabled, placeholder, autoFocus } = this.props;
+    const hasSuffix = prefix !== '' || suffix !== ''
     return (
-      <div className={this.className('pg-input', className)} style={{ display: hasSuffix ? 'inline-table' : 'block', borderColor: this.props.border }}>
+      <div className={this.className('pg-input', className)} style={this.getInputStyle(hasSuffix)}>
         {
           this.props.prefix !== '' &&
           <span className="pg-input-prefix" >{this.props.prefix}</span>
@@ -71,9 +85,10 @@ export default class Input extends Component {
           // <i onClick={(e) => this.handleClear(e)} className="pg-icon-circle-closer"></i>
         }
         <input
+          ref={input => this.input = input}
           className={this.className('pg-input__inner', { 'clear': this.props.showClear, 'icon': this.props.icon })}
-          type="text"
-          placeholder={this.props.placeholder}
+          type="pg-input"
+          placeholder={placeholder}
           value={this.props.value}
           onCompositionstart={(e) => this.handleCompositionStart(e)}
           onCompositionend={(e) => this.handleCompositionEnd(e)}
@@ -81,7 +96,8 @@ export default class Input extends Component {
           onKeyDown={(val) => this.handleKeyDown(val)}
           onBlur={(val) => this.handleBlur(val)}
           onFocus={(val) => this.handleFocus(val)}
-          disabled={this.props.disabled}
+          disabled={disabled}
+          autoFocus={autoFocus}
           style={{ display: hasSuffix ? 'table-cell' : 'inline-block' }}
         />
         {

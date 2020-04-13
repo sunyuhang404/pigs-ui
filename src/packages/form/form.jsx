@@ -22,88 +22,48 @@ export default class Form extends Component {
   }
 
   // 添加 FormItem
-  addItem(item) {
+  addItem = (item) => {
     this.state.items.push(item);
   }
 
   // 移除 FormItem
-  removeItem(item) {
+  removeItem = (item) => {
     if (item.props.prop) {
       this.state.items.splice(this.state.items._indexOf(item), 1);
     }
   }
 
+  // 校验所有的 FormItem
+  validate = (callback) => {
+    if (!this.state.items.length && callback) {
+      callback(true);
+    }
+    let current = 0;
+    const errorList = [];
+    this.state.items.forEach(item => {
+      item.validateField('', errors => {
+        errorList.push(errors);
+        if (typeof callback === 'function' && ++current === this.state.items.length) {
+          callback(errorList.every(item => item === null));
+        }
+      });
+    });
+  }
+
+  // 重置校验状态
+  resetFields = () => {
+    this.state.items.forEach(item => item.resetField());
+    console.log(this.props.model);
+  }
+
   render() {
     return (
-      <form className={this.className('pg-form', { 'pg-form--inline': this.props.inline })}>
-        {/* { this.props.children } */}
-        {
-          Nerv.Children.map(this.props.children, (child, index) => {
-            if (!child) {
-              return null;
-            }
-            return Nerv.cloneElement(child, Object.assign(
-              {},
-              child.props,
-              { key: `form-item-${index}` }
-            ))
-          })
-        }
+      <form
+        className={this.className('pg-form', { 'pg-form--inline': this.props.inline })}
+        onSubmit={this.props.onSubmit}
+      >
+        { this.props.children }
       </form>
     )
   }
 }
-// export default class Form extends Component {
-//   static defaultProps = {
-//     disabled: false,
-//     value: [],
-//     min: undefined,
-//     max: undefined,
-//   };
-
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       value: props.value || [],
-//     }
-//   }
-
-//   getChildContext() {
-//     return { component: this };
-//   }
-
-//   componentWillReceiveProps(nextProps) {
-//     if (nextProps.value !== this.props.value) {
-//       this.setState({ value: nextProps.value });
-//     }
-//   }
-
-//   onChange = (checked, value) => {
-//     if (checked) {
-//       if (this.props.max !== undefined) {
-//         (this.props.max > this.state.value.length) && this.state.value.push(value);
-//       } else {
-//         this.state.value.push(value);
-//       }
-//     } else {
-//       const index = this.state.value._findIndex(item => item === value);
-//       if (this.props.min !== undefined) {
-//         (this.state.value.length > this.props.min) && this.state.value.splice(index, 1)
-//       } else {
-//         index !== -1 && this.state.value.splice(index, 1);
-//       }
-//     }
-//     this.forceUpdate();
-//     if (this.props.onChange) {
-//       this.props.onChange(this.state.value);
-//     }
-//   }
-
-//   render() {
-//     return (
-//       <div className={this.className('pg-checkbox-group', this.props.className)}>
-//         { this.props.children }
-//       </div>
-//     )
-//   }
-// }

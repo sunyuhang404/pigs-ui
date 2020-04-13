@@ -6,6 +6,7 @@
   border: 1px solid #dcdfe6;
   border-radius: 2px;
   position: relative;
+  font-size: 0;
   &:focus {
     border-color: #409eff;
   }
@@ -19,11 +20,11 @@
     padding: 4px 6px;
     border: none;
     color: #232747;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
     vertical-align: middle;
     transition: all .2s ease-in-out;
-    font-weight: 300;
+    font-weight: 400;
     &:focus {
       border-color: #409eff;
     }
@@ -112,4 +113,7 @@
 }
 .pg-input__prefix {
   border: none;
+}
+.pg-input + .pg-input {
+  margin-bottom: 12px;
 }

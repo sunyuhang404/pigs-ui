@@ -27,6 +27,15 @@
     line-height: 32px;
     font-size: 14px;
     transition: all 0.2s ease-in-out;
+    &:before, &:after {
+      content: '';
+      // display: inline-block;
+      // vertical-align: middle;
+      display: table;
+    }
+    [class*=" pg-"], [class^=pg-] {
+      vertical-align: middle;
+    }
     .pg-form-item__error {
       position: absolute;
       top: 100%;
@@ -39,12 +48,19 @@
   }
 }
 
-.is-required {
+.pg-form-item.is-required {
   .pg-form-item__label {
     &::before {
       content: "*";
       color: #f56c6c;
       margin-right: 4px;
     }
+  }
+}
+
+.pg-form-item.is-error {
+  [class^=pg-]:not(.pg-checkbox-item-input):not(.pg-radio-item-input) {
+    border-color: #f56c6c;
+    transition: all 0.2s ease-in-out;
   }
 }
