@@ -55,12 +55,12 @@ const routers = [
     exact: false,
     component: Select,
   },
-  {
-    path: '/loading',
-    name: 'Loading 加载',
-    exact: false,
-    component: Loading,
-  },
+  // {
+  //   path: '/loading',
+  //   name: 'Loading 加载',
+  //   exact: false,
+  //   component: Loading,
+  // },
   {
     path: '/dialog',
     name: 'Dialog 对话框',

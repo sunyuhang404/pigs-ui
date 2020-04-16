@@ -102,7 +102,7 @@ export default class FormItem extends Component {
   getRules = () => {
     let parentRules = this.parent().props.rules;
     const currentRules = this.props.rules;
-    if (this.props.prop) {
+    if (this.props.prop && parentRules) {
       parentRules = parentRules[this.props.prop] ? [parentRules[this.props.prop]] : [];
     }
     return [].concat(currentRules || parentRules || []);
