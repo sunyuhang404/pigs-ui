@@ -32,9 +32,9 @@ export default class CollapseView extends Nerv.Component {
     }).then(({ args, argv }) => {
       const code = transform(`
         class Demo extends Nerv.Component {
-          ${value}
+          ${ value }
         }
-        Nerv.render(<Demo {...context.props} />, document.getElementById('${this.infoId}'))
+        Nerv.render(<Demo {...context.props} />, document.getElementById('${ this.infoId }'))
       `, { presets: ['es2015', 'react'] }
       ).code;
       args.push(code);
@@ -50,7 +50,7 @@ export default class CollapseView extends Nerv.Component {
     const { className } = this.props;
     this.renderDemoClass();
     return (
-      <div className={`pg-collapse-view ${className ? className : ''}`}>
+      <div className={`pg-collapse-view ${ className ? className : '' }`}>
         <div className="pg-collpase-content__box">
           <div id={this.infoId}></div>
         </div>
@@ -60,16 +60,16 @@ export default class CollapseView extends Nerv.Component {
             {
               this.props.desc &&
               <div className="pg-collapse-code__desc">
-                <div className="pg-collapse-code__content" dangerouslySetInnerHTML={{__html: this.props.desc}}></div>
+                <div className="pg-collapse-code__content" dangerouslySetInnerHTML={{ __html: this.props.desc }}></div>
               </div>
             }
             <pre className="pg-collapse-code__box">
-              <code>{this.props.code}</code>
+              <code>{ this.props.code }</code>
             </pre>
           </div>
         }
         <div className="pg-collapse-arrow" onClick={() => this.handleShowCode()}>
-          <i className={`icon-arraw ${this.state.isOpen ? 'icon-open' : 'icon-close'}`}></i>
+          <i className={`icon-arraw ${ this.state.isOpen ? 'icon-open' : 'icon-close' }`}></i>
         </div>
       </div>
     )
